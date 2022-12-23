@@ -127,10 +127,9 @@ void BleKeyboard::begin(void)
 #else
 
   BLESecurity* pSecurity = new BLESecurity();
-  //https://github.com/nkolban/esp32-snippets/issues/230#issuecomment-554595413
-  //pSecurity->setAuthenticationMode(ESP_LE_AUTH_BOND);
-  pSecurity->setAuthenticationMode(ESP_LE_AUTH_NO_BOND);
-  pSecurity->setCapability(ESP_IO_CAP_IN);
+  pSecurity->setAuthenticationMode(ESP_LE_AUTH_REQ_SC_BOND);
+  pSecurity->setCapability(ESP_IO_CAP_NONE);
+  pSecurity->setInitEncryptionKey(ESP_BLE_ENC_KEY_MASK | ESP_BLE_ID_KEY_MASK);
 
 #endif // USE_NIMBLE
 
